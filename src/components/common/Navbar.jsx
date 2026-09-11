@@ -59,17 +59,17 @@ const Navbar = () => {
             : 'bg-transparent py-3.5 sm:py-5'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-2">
             
             {/* Brand Logo & Name */}
-            <Link to="/" onClick={closeMenu} className="flex items-center gap-2 sm:gap-2.5">
+            <Link to="/" onClick={closeMenu} className="flex items-center gap-2 min-w-0">
               <img 
                 src={companyLogo} 
                 alt={companyName} 
-                className="h-8 w-8 sm:h-10 sm:w-10 object-contain shrink-0" 
+                className="h-7 w-7 sm:h-9 sm:w-9 object-contain shrink-0" 
               />
-              <span className="text-base sm:text-xl font-bold font-space text-gray-900 tracking-tight">
+              <span className="text-sm sm:text-lg font-bold font-space text-gray-900 tracking-tight truncate">
                 {companyName}
               </span>
             </Link>
@@ -103,19 +103,19 @@ const Navbar = () => {
               ))}
               <Link 
                 to="/contact" 
-                className="px-4 lg:px-5 py-2 lg:py-2.5 bg-gradient-to-r from-[#0044DD] to-[#00BBDD] text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:opacity-95"
+                className="px-4 lg:px-5 py-2 lg:py-2.5 bg-gradient-to-r from-[#0044DD] to-[#00BBDD] text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:opacity-95 shrink-0"
               >
                 Get Quote
               </Link>
             </nav>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button - shrink-0 ensures it is ALWAYS visible */}
             <button 
-              className="md:hidden p-2 text-gray-800 hover:text-[#0044DD] transition-colors focus:outline-none rounded-lg"
+              className="md:hidden p-2 text-gray-800 hover:text-[#0044DD] transition-colors focus:outline-none rounded-lg shrink-0"
               onClick={toggleMenu}
               aria-label="Open menu"
             >
-              <FiMenu size={24} />
+              <FiMenu size={22} />
             </button>
           </div>
         </div>

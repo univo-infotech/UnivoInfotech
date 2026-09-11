@@ -38,7 +38,7 @@ const ParticlesBackground = () => {
     const techSymbols = [
       '</>', '/>', '{code}', '=>', '[]', '++', '&&', '||', '!=', '===',
       'async', 'await', 'fn()', 'API', '0101', '1010', 'React', 'Node',
-      'const', 'import', 'CodeVia', 'Cloud', 'AI/ML', 'v1.0'
+      'const', 'import', 'Univo', 'Cloud', 'AI/ML', 'v1.0'
     ];
 
     // Binary matrix rain setup

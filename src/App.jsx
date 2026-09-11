@@ -60,7 +60,7 @@ function App() {
   const isAdminLogin = location.pathname === '/admin/login';
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 w-full max-w-[100vw] overflow-x-hidden">
       <Suspense fallback={<LoadingSpinner />}>
         {!isAdmin && <Navbar />}
         {!isAdmin && <ScrollToTop />}
