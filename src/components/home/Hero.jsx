@@ -39,7 +39,7 @@ const Hero = () => {
   const item = { hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
   return (
-    <section id="hero" ref={containerRef} className="relative w-full overflow-hidden bg-gradient-to-br from-white/60 to-[#EFF7FF]/60 pt-20 sm:pt-28 lg:pt-32 pb-12 sm:pb-20">
+    <section id="hero" ref={containerRef} className="relative w-full overflow-hidden bg-gradient-to-br from-white/60 to-[#EFF7FF]/60 pt-20 sm:pt-28 lg:pt-32 pb-16 sm:pb-20">
       {/* Subtle Background Blobs */}
       <motion.div 
         className="absolute top-10 left-4 sm:left-10 w-36 sm:w-64 h-36 sm:h-64 rounded-full bg-[#0044DD] mix-blend-multiply filter blur-3xl opacity-15 pointer-events-none"
@@ -50,7 +50,7 @@ const Hero = () => {
         animate={{ x: mousePosition.x * 40, y: mousePosition.y * 40 }} 
       />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         
         {/* Left Content */}
         <motion.div variants={staggerContainer} initial="hidden" animate="show" className="text-left max-w-xl mx-auto lg:mx-0">
@@ -61,7 +61,7 @@ const Hero = () => {
             <span className="text-[11px] sm:text-xs font-semibold text-[#081830] tracking-wide">Innovating the Future</span>
           </motion.div>
 
-          {/* Headline - Scaled properly from 320px to 4k */}
+          {/* Headline */}
           <motion.h1 
             variants={item} 
             className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-space text-[#081830] mb-3 sm:mb-5 leading-[1.25] sm:leading-tight"
@@ -77,7 +77,7 @@ const Hero = () => {
             {heroSubtitle}
           </motion.p>
 
-          {/* CTA Buttons - Mobile-friendly & adaptive */}
+          {/* CTA Buttons */}
           <motion.div variants={item} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3.5">
             <Link 
               to="/contact"
@@ -102,45 +102,73 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Visual — hidden on mobile */}
+        {/* Right Code Visual & Trusted Badge — NOW FULLY RESPONSIVE ON ALL SCREENS */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative hidden lg:block"
+          className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto mt-4 lg:mt-0 pb-6 sm:pb-4"
         >
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#0044DD]/15 to-[#00BBDD]/15 rounded-3xl transform rotate-2 scale-105" />
-          <div className="relative bg-[#081830] rounded-2xl p-6 shadow-2xl border border-white/10 overflow-hidden text-white font-mono text-xs sm:text-sm">
-            <div className="flex space-x-2 mb-4">
+          {/* Outer glow background */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#0044DD]/15 via-[#00BBDD]/20 to-[#22DD88]/15 rounded-3xl transform rotate-1 sm:rotate-2 scale-102 sm:scale-105 pointer-events-none filter blur-xs" />
+          
+          {/* Main IDE Window */}
+          <div className="relative bg-[#081830] rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/10 overflow-hidden text-white font-mono text-[11px] sm:text-xs md:text-sm">
+            {/* Top Mac-style dots */}
+            <div className="flex items-center space-x-2 mb-3.5 sm:mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+              <span className="text-[10px] text-gray-400 font-sans ml-2 opacity-60">univo-core.js</span>
             </div>
-            <div className="space-y-2 opacity-85">
-              <p><span className="text-pink-400">const</span> <span className="text-blue-400">vision</span> <span className="text-pink-400">=</span> <span className="text-green-400">'limitless'</span>;</p>
-              <p><span className="text-pink-400">function</span> <span className="text-blue-400">buildFuture</span>() {'{'}</p>
-              <p className="pl-4"><span className="text-pink-400">return</span> <span className="text-yellow-400">new</span> <span className="text-blue-400">Masterpiece</span>(vision);</p>
+
+            {/* Code lines */}
+            <div className="space-y-1.5 sm:space-y-2 opacity-90 leading-relaxed">
+              <p>
+                <span className="text-pink-400">const</span>{' '}
+                <span className="text-blue-400">vision</span>{' '}
+                <span className="text-pink-400">=</span>{' '}
+                <span className="text-green-400">'limitless'</span>;
+              </p>
+              <p>
+                <span className="text-pink-400">function</span>{' '}
+                <span className="text-blue-400">buildFuture</span>() {'{'}
+              </p>
+              <p className="pl-3 sm:pl-4">
+                <span className="text-pink-400">return</span>{' '}
+                <span className="text-yellow-400">new</span>{' '}
+                <span className="text-blue-400">Masterpiece</span>(vision);
+              </p>
               <p>{'}'}</p>
-              <p><span className="text-blue-400">buildFuture</span>();</p>
+              <p className="pt-0.5">
+                <span className="text-blue-400">buildFuture</span>();
+              </p>
             </div>
           </div>
 
+          {/* Floating 'Trusted by 500+ Clients' badge */}
           <motion.div
-            className="absolute -bottom-5 -left-5 bg-white p-3.5 rounded-2xl shadow-lg border border-gray-100 flex items-center space-x-3 z-20"
+            className="absolute -bottom-2 sm:-bottom-4 left-3 sm:-left-4 bg-white/95 backdrop-blur-md p-2 sm:p-3 rounded-xl sm:rounded-2xl shadow-xl border border-gray-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
             animate={{ y: [0, -6, 0] }}
             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
           >
             <div className="flex -space-x-2">
               {[1, 2, 3].map(i => (
-                <img key={i} src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="user" className="w-8 h-8 rounded-full border-2 border-white shadow-xs" />
+                <img 
+                  key={i} 
+                  src={`https://i.pravatar.cc/100?img=${i + 10}`} 
+                  alt="client" 
+                  className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover shadow-xs" 
+                />
               ))}
             </div>
             <div>
-              <p className="text-[#081830] font-bold text-xs">Trusted by</p>
-              <p className="text-gray-500 text-[10px]">500+ Clients</p>
+              <p className="text-[#081830] font-bold text-[11px] sm:text-xs leading-none">Trusted by</p>
+              <p className="text-gray-500 text-[9px] sm:text-[10px] mt-0.5 font-medium">500+ Clients</p>
             </div>
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   );
