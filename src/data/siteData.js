@@ -211,7 +211,8 @@ const siteData = {
   company: {
     name: 'Univo Infotech',
     tagline: 'Ideas | Technology | Growth',
-    email: 'hello@univoinfotech.com',
+    logo: '/logo.png',
+    email: 'univoinfotech@gmail.com',
     phone: '+91 98765 43210',
     address: 'Tech Hub, Sector 62, Noida, UP, India',
     social: {

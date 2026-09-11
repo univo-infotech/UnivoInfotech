@@ -6,11 +6,15 @@ import {
   FiBarChart2, FiInfo, FiCpu, FiLogOut
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
+import { useData } from '../../context/DataContext';
 import toast from 'react-hot-toast';
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
   const { user, logout } = useAuth();
+  const { data } = useData();
   const navigate = useNavigate();
+  const companyName = data?.company?.name || 'Univo Infotech';
+  const companyLogo = data?.company?.logo || '/logo.png';
 
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: <FiHome />, end: true },
@@ -45,8 +49,8 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         {/* Header */}
         <div className="h-16 flex items-center justify-between px-4 bg-[#06102A]">
           <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Univo Infotech" className="h-9 w-auto object-contain bg-white/90 p-1 rounded-lg" />
-            <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Univo Infotech</span>
+            <img src={companyLogo} alt={companyName} className="h-9 w-9 object-contain bg-white/90 p-1 rounded-lg" />
+            <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00BBDD] to-[#22DD88]">{companyName}</span>
           </div>
           <button className="md:hidden text-slate-400 hover:text-white" onClick={() => setIsOpen(false)}>
             <FiX size={24} />

@@ -38,11 +38,14 @@ const Footer = () => {
           
           {/* Column 1: Brand & About */}
           <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-3 inline-block">
-              <img src="/logo.png" alt={company.name || 'CodeVia'} className="h-10 w-auto object-contain bg-white/90 p-1.5 rounded-xl" />
-              <span className="text-3xl font-space font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                {company.name || 'CodeVia'}
-              </span>
+            <Link to="/" className="flex items-center gap-3">
+              <img src={company.logo || '/logo.png'} alt={company.name || 'Univo Infotech'} className="h-11 w-11 object-contain bg-white/90 p-1 rounded-xl" />
+              <div>
+                <span className="block text-xl font-space font-bold bg-gradient-to-r from-[#00BBDD] via-[#22DD88] to-[#00BBDD] bg-clip-text text-transparent">
+                  {company.name || 'Univo Infotech'}
+                </span>
+                <span className="text-xs text-gray-400">{company.tagline || 'Ideas | Technology | Growth'}</span>
+              </div>
             </Link>
             <p className="text-gray-400 font-inter text-sm leading-relaxed max-w-xs">
               Transforming ideas into exceptional digital experiences. We build scalable, modern, and high-performance applications.

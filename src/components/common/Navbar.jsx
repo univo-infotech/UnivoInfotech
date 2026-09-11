@@ -9,7 +9,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const companyName = data?.company?.name || 'CodeVia';
+  const companyName = data?.company?.name || 'Univo Infotech';
+  const companyLogo = data?.company?.logo || '/logo.png';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,8 +50,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link to="/" onClick={closeMenu} className="flex items-center gap-3 z-50">
-            <img src="/logo.png" alt={companyName} className="h-10 w-auto object-contain max-h-10" />
+          <Link to="/" onClick={closeMenu} className="flex items-center gap-2.5 z-50">
+            <img src={companyLogo} alt={companyName} className="h-10 w-10 object-contain" />
+            <span className="text-xl font-bold font-space bg-gradient-to-r from-[#0044DD] via-[#00BBDD] to-[#22DD88] bg-clip-text text-transparent">
+              {companyName}
+            </span>
           </Link>
 
           {/* Desktop Nav */}
