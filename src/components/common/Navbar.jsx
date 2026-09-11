@@ -52,7 +52,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link to="/" onClick={closeMenu} className="flex items-center gap-2.5 z-50">
             <img src={companyLogo} alt={companyName} className="h-10 w-10 object-contain" />
-            <span className="text-xl font-bold font-space bg-gradient-to-r from-[#0044DD] via-[#00BBDD] to-[#22DD88] bg-clip-text text-transparent">
+            <span className={`text-xl font-bold font-space transition-colors duration-300 ${
+              isScrolled ? 'text-gray-900' : 'text-gray-900'
+            }`}>
               {companyName}
             </span>
           </Link>

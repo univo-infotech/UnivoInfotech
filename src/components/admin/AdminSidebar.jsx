@@ -50,7 +50,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         <div className="h-16 flex items-center justify-between px-4 bg-[#06102A]">
           <div className="flex items-center space-x-2">
             <img src={companyLogo} alt={companyName} className="h-9 w-9 object-contain bg-white/90 p-1 rounded-lg" />
-            <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00BBDD] to-[#22DD88]">{companyName}</span>
+            <span className="text-sm font-bold text-white">{companyName}</span>
           </div>
           <button className="md:hidden text-slate-400 hover:text-white" onClick={() => setIsOpen(false)}>
             <FiX size={24} />

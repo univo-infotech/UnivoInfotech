@@ -41,7 +41,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3">
               <img src={company.logo || '/logo.png'} alt={company.name || 'Univo Infotech'} className="h-11 w-11 object-contain bg-white/90 p-1 rounded-xl" />
               <div>
-                <span className="block text-xl font-space font-bold bg-gradient-to-r from-[#00BBDD] via-[#22DD88] to-[#00BBDD] bg-clip-text text-transparent">
+                <span className="block text-xl font-space font-bold text-white">
                   {company.name || 'Univo Infotech'}
                 </span>
                 <span className="text-xs text-gray-400">{company.tagline || 'Ideas | Technology | Growth'}</span>
