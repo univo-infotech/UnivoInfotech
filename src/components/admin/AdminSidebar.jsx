@@ -45,9 +45,11 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
     <>
       <div className={`fixed inset-0 bg-slate-900/50 z-20 md:hidden ${isOpen ? 'block' : 'hidden'}`} onClick={() => setIsOpen(false)}></div>
       
-      <div className={`fixed md:static inset-y-0 left-0 w-64 bg-[#0A1A3A] text-white z-30 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+      <div className={`fixed md:static inset-y-0 left-0 w-64 text-white z-30 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+        style={{ background: 'linear-gradient(160deg, #0A1A5C 0%, #0044DD 35%, #00BBDD 70%, #22DD88 100%)' }}
+      >
         {/* Header */}
-        <div className="h-16 flex items-center justify-between px-4 bg-[#06102A]">
+        <div className="h-16 flex items-center justify-between px-4" style={{ background: 'rgba(0,0,0,0.25)' }}>
           <div className="flex items-center space-x-2">
             <img src={companyLogo} alt={companyName} className="h-9 w-9 object-contain bg-white/90 p-1 rounded-lg" />
             <span className="text-sm font-bold text-white">{companyName}</span>
@@ -66,7 +68,11 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
                 to={item.path}
                 end={item.end}
                 className={({ isActive }) => 
-                  `flex items-center px-3 py-2.5 rounded-lg transition-colors group text-sm ${isActive ? 'bg-gradient-to-r from-[#0055CC] to-[#00C4A0] text-white font-semibold' : 'text-slate-300 hover:bg-white/10 hover:text-white'}`
+                  `flex items-center px-3 py-2.5 rounded-xl transition-all group text-sm ${
+                    isActive 
+                      ? 'bg-white text-[#0044DD] font-semibold shadow-md' 
+                      : 'text-white/90 hover:bg-white/20 hover:text-white'
+                  }`
                 }
                 onClick={() => setIsOpen(false)}
               >
@@ -78,16 +84,16 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         </div>
 
         {/* User Info + Logout */}
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-white/20 p-4" style={{ background: 'rgba(0,0,0,0.20)' }}>
           {user && (
             <div className="mb-3 px-1">
-              <p className="text-xs text-slate-400">Signed in as</p>
+              <p className="text-xs text-white/60">Signed in as</p>
               <p className="text-sm text-white font-medium truncate">{user.email}</p>
             </div>
           )}
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
           >
             <FiLogOut size={18} />
             <span>Logout</span>
