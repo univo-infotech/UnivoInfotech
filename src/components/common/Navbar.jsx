@@ -51,9 +51,6 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link to="/" onClick={closeMenu} className="flex items-center gap-3 z-50">
             <img src="/logo.png" alt={companyName} className="h-10 w-auto object-contain max-h-10" />
-            <span className="text-2xl font-space font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {companyName}
-            </span>
           </Link>
 
           {/* Desktop Nav */}

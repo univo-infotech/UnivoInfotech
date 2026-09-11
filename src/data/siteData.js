@@ -1,7 +1,7 @@
 const siteData = {
   hero: {
-    title: 'We Build Digital Experiences That Matter',
-    subtitle: 'CodeVia transforms your ideas into powerful, scalable software solutions. From web apps to mobile platforms, we code the future.',
+    title: 'We Build Digital Solutions That Drive Growth',
+    subtitle: 'Univo Infotech transforms your ideas into powerful, scalable software solutions. From web apps to mobile platforms — Ideas | Technology | Growth.',
     ctaPrimary: 'Start Your Project',
     ctaSecondary: 'View Our Work'
   },
@@ -209,9 +209,9 @@ const siteData = {
     }
   ],
   company: {
-    name: 'CodeVia',
-    tagline: 'Code. Innovate. Elevate.',
-    email: 'hello@codevia.dev',
+    name: 'Univo Infotech',
+    tagline: 'Ideas | Technology | Growth',
+    email: 'hello@univoinfotech.com',
     phone: '+91 98765 43210',
     address: 'Tech Hub, Sector 62, Noida, UP, India',
     social: {

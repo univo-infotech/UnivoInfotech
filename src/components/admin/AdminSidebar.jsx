@@ -1,12 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { 
   FiHome, FiLayout, FiGrid, FiBriefcase, FiUsers, 
   FiMessageSquare, FiStar, FiFileText, FiSettings, FiX,
-  FiBarChart2, FiInfo, FiCpu
+  FiBarChart2, FiInfo, FiCpu, FiLogOut
 } from 'react-icons/fi';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: <FiHome />, end: true },
     { name: 'Hero Section', path: '/admin/hero', icon: <FiLayout /> },
@@ -22,21 +27,33 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
     { name: 'Company Settings', path: '/admin/settings', icon: <FiSettings /> },
   ];
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast.success('Logged out successfully!');
+      navigate('/admin/login');
+    } catch (e) {
+      toast.error('Logout failed. Try again.');
+    }
+  };
+
   return (
     <>
       <div className={`fixed inset-0 bg-slate-900/50 z-20 md:hidden ${isOpen ? 'block' : 'hidden'}`} onClick={() => setIsOpen(false)}></div>
       
-      <div className={`fixed md:static inset-y-0 left-0 w-64 bg-[#1A2B4A] text-white z-30 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-        <div className="h-16 flex items-center justify-between px-6 bg-[#132038]">
-          <div className="flex items-center space-x-3">
-            <img src="/logo.png" alt="CodeVia" className="h-8 w-auto object-contain bg-white/90 p-1 rounded-lg" />
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">CodeVia</span>
+      <div className={`fixed md:static inset-y-0 left-0 w-64 bg-[#0A1A3A] text-white z-30 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+        {/* Header */}
+        <div className="h-16 flex items-center justify-between px-4 bg-[#06102A]">
+          <div className="flex items-center space-x-2">
+            <img src="/logo.png" alt="Univo Infotech" className="h-9 w-auto object-contain bg-white/90 p-1 rounded-lg" />
+            <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Univo Infotech</span>
           </div>
           <button className="md:hidden text-slate-400 hover:text-white" onClick={() => setIsOpen(false)}>
             <FiX size={24} />
           </button>
         </div>
         
+        {/* Nav Links */}
         <div className="flex-1 overflow-y-auto py-4">
           <nav className="space-y-1 px-3">
             {navItems.map((item) => (
@@ -45,7 +62,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
                 to={item.path}
                 end={item.end}
                 className={({ isActive }) => 
-                  `flex items-center px-3 py-2.5 rounded-lg transition-colors group text-sm ${isActive ? 'bg-blue-600 text-white font-semibold' : 'text-slate-300 hover:bg-[#233559] hover:text-white'}`
+                  `flex items-center px-3 py-2.5 rounded-lg transition-colors group text-sm ${isActive ? 'bg-gradient-to-r from-[#0055CC] to-[#00C4A0] text-white font-semibold' : 'text-slate-300 hover:bg-white/10 hover:text-white'}`
                 }
                 onClick={() => setIsOpen(false)}
               >
@@ -54,6 +71,23 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
               </NavLink>
             ))}
           </nav>
+        </div>
+
+        {/* User Info + Logout */}
+        <div className="border-t border-white/10 p-4">
+          {user && (
+            <div className="mb-3 px-1">
+              <p className="text-xs text-slate-400">Signed in as</p>
+              <p className="text-sm text-white font-medium truncate">{user.email}</p>
+            </div>
+          )}
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors"
+          >
+            <FiLogOut size={18} />
+            <span>Logout</span>
+          </button>
         </div>
       </div>
     </>
