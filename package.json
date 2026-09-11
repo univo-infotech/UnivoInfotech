@@ -23,5 +23,10 @@
     "@vitejs/plugin-react": "^4.5.2",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.2"
+  },
+  "overrides": {
+    "@vitejs/plugin-react": {
+      "vite": "^8.2.2"
+    }
   }
 }
