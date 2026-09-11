@@ -16,14 +16,16 @@ const Portfolio = () => {
   const displayProjects = filteredProjects.slice(0, 6);
 
   return (
-    <section id="portfolio" className="py-24 bg-[#F8FAFF]/50 backdrop-blur-sm relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
+    <section id="portfolio" className="py-16 sm:py-24 bg-[#EFF7FF]/50 backdrop-blur-sm relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold font-['Space_Grotesk'] text-[#1A2B4A] mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold font-space text-[#081830] mb-3 sm:mb-4"
           >
             Featured Work
           </motion.h2>
@@ -31,25 +33,31 @@ const Portfolio = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-gray-600 max-w-2xl mx-auto"
+            className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-2"
           >
             A showcase of our recent projects and digital innovations.
           </motion.p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* Filter Pills - scrollable/wrap on mobile */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2">
           {categories.map((cat, i) => (
             <button
               key={i}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${filter === cat ? 'bg-[#0066FF] text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}`}
+              className={`px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
+                filter === cat 
+                  ? 'bg-gradient-to-r from-[#0044DD] to-[#00BBDD] text-white shadow-md' 
+                  : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+              }`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid */}
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence>
             {displayProjects.map((project, index) => (
               <motion.div
@@ -59,28 +67,50 @@ const Portfolio = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={project?.id || index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow border border-gray-100 relative z-10"
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 relative z-10 flex flex-col"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img src={project?.image} alt={project?.title || 'Project'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="relative h-52 sm:h-60 md:h-64 overflow-hidden">
+                  <img 
+                    src={project?.image} 
+                    alt={project?.title || 'Project'} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a href={project?.link || '#'} target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#0066FF] hover:bg-[#00B4D8] hover:text-white transition-colors">
-                      <FiExternalLink className="text-xl" />
+                    <a 
+                      href={project?.link || '#'} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-11 h-11 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center text-[#0044DD] hover:bg-[#00BBDD] hover:text-white transition-colors"
+                      aria-label="View Project Link"
+                    >
+                      <FiExternalLink className="text-lg sm:text-xl" />
                     </a>
                   </div>
                 </div>
-                <div className="p-6">
-                  <span className="text-sm font-semibold text-[#00B4D8] uppercase tracking-wider">{project?.category || 'Project'}</span>
-                  <h3 className="text-xl font-bold text-[#1A2B4A] mt-2 mb-2">{project?.title || ''}</h3>
-                  <p className="text-gray-600 line-clamp-2">{project?.description || ''}</p>
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-xs font-semibold text-[#00BBDD] uppercase tracking-wider">
+                      {project?.category || 'Project'}
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#081830] mt-1 mb-2 line-clamp-1">
+                      {project?.title || ''}
+                    </h3>
+                    <p className="text-gray-600 text-xs sm:text-sm line-clamp-2 leading-relaxed">
+                      {project?.description || ''}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        <div className="text-center mt-16">
-          <Link to="/portfolio" className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1A2B4A] font-semibold rounded-full shadow-lg border border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] transition-all duration-300">
+        {/* CTA Link */}
+        <div className="text-center mt-10 sm:mt-16">
+          <Link 
+            to="/portfolio" 
+            className="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-[#081830] font-semibold rounded-full shadow-md border border-gray-200 hover:border-[#0044DD] hover:text-[#0044DD] transition-all duration-300 text-sm sm:text-base"
+          >
             View All Projects
           </Link>
         </div>

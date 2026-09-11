@@ -26,18 +26,22 @@ const Testimonials = () => {
   const quoteText = activeTestimonial.content || activeTestimonial.text || activeTestimonial.quote || '';
   const authorName = activeTestimonial.name || activeTestimonial.author || 'Client';
   const roleName = activeTestimonial.role || 'Partner';
-  const companyName = activeTestimonial.company || 'CodeVia Client';
-  const avatarUrl = activeTestimonial.avatar || activeTestimonial.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}&background=0066FF&color=fff`;
+  const companyName = activeTestimonial.company || 'Univo Client';
+  const avatarUrl = activeTestimonial.avatar || activeTestimonial.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}&background=0044DD&color=fff`;
 
   return (
-    <section id="testimonials" className="py-24 bg-[#1A2B4A] text-white overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#0066FF] rounded-full filter blur-[100px] opacity-30" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00B4D8] rounded-full filter blur-[100px] opacity-30" />
+    <section id="testimonials" className="py-16 sm:py-24 bg-[#081830] text-white overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#0044DD] rounded-full filter blur-[100px] opacity-30 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00BBDD] rounded-full filter blur-[100px] opacity-30 pointer-events-none" />
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">Client Success Stories</h2>
-          <p className="text-blue-200 max-w-2xl mx-auto">Don't just take our word for it. Hear what our partners have to say.</p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-space mb-3 sm:mb-4">
+            Client Success Stories
+          </h2>
+          <p className="text-blue-200 text-sm sm:text-base max-w-2xl mx-auto px-2">
+            Don't just take our word for it. Hear what our partners have to say.
+          </p>
         </div>
 
         <div 
@@ -45,43 +49,47 @@ const Testimonials = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative min-h-[250px] flex items-center justify-center">
+          <div className="relative min-h-[260px] sm:min-h-[230px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-center text-center w-full"
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center text-center w-full px-2"
               >
-                <div className="flex space-x-1 text-yellow-400 mb-6">
-                  {[...Array(activeTestimonial.rating || 5)].map((_, i) => <FiStar key={i} className="fill-current" />)}
+                <div className="flex space-x-1 text-yellow-400 mb-4 sm:mb-6">
+                  {[...Array(activeTestimonial.rating || 5)].map((_, i) => (
+                    <FiStar key={i} className="fill-current text-sm sm:text-base" />
+                  ))}
                 </div>
-                <p className="text-xl md:text-2xl font-light italic text-blue-50 mb-8 max-w-3xl leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl font-light italic text-blue-50 mb-6 sm:mb-8 max-w-3xl leading-relaxed">
                   "{quoteText}"
                 </p>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3 sm:space-x-4">
                   <img 
                     src={avatarUrl} 
                     alt={authorName} 
-                    className="w-14 h-14 rounded-full border-2 border-[#00B4D8] object-cover"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-[#00BBDD] object-cover shrink-0"
                   />
                   <div className="text-left">
-                    <h4 className="font-bold text-lg">{authorName}</h4>
-                    <p className="text-sm text-blue-300">{roleName} @ {companyName}</p>
+                    <h4 className="font-bold text-sm sm:text-base">{authorName}</h4>
+                    <p className="text-xs sm:text-sm text-blue-300">{roleName} @ {companyName}</p>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="flex justify-center space-x-2 mt-8">
+          <div className="flex justify-center space-x-2 mt-6 sm:mt-8">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-[#00B4D8] w-8' : 'bg-white/30 hover:bg-white/50 w-3'}`}
+                className={`h-2.5 sm:h-3 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? 'bg-[#00BBDD] w-6 sm:w-8' : 'bg-white/30 hover:bg-white/50 w-2.5 sm:w-3'
+                }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}

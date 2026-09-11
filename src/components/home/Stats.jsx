@@ -46,33 +46,28 @@ const Stats = () => {
   const stats = data?.stats || [];
 
   return (
-    <section id="stats" className="py-20 bg-white relative z-20 -mt-10">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <section id="stats" className="py-12 sm:py-20 bg-white relative z-20 -mt-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((stat, index) => {
-            // Support both data structures: stat.number/suffix OR stat.value string like "150+"
             let num = stat?.number;
             let suf = stat?.suffix;
-
             if (num === undefined && stat?.value) {
               const valStr = String(stat.value);
               num = parseInt(valStr.replace(/[^0-9]/g, '')) || 0;
               suf = valStr.replace(/[0-9]/g, '') || '';
             }
-
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow relative z-10"
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="bg-white border border-gray-100 rounded-2xl p-5 sm:p-8 text-center shadow-lg hover:shadow-xl transition-shadow relative z-10"
               >
-                <h3 className="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#00B4D8] mb-2">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space text-transparent bg-clip-text bg-gradient-to-r from-[#0044DD] to-[#00BBDD] mb-1 sm:mb-2">
                   <Counter targetNumber={num || 0} suffix={suf || '+'} />
                 </h3>
-                <p className="text-[#1A2B4A] font-semibold">{stat?.label || ''}</p>
+                <p className="text-[#081830] font-semibold text-xs sm:text-base">{stat?.label || ''}</p>
               </motion.div>
             );
           })}
